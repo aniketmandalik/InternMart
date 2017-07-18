@@ -1,0 +1,28 @@
+{
+  "name": "internmart",
+  "version": "1.0.0",
+  "description": "The Internship Website for High Schoolers",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aniketmandalik/InternMart.git"
+  },
+  "keywords": [
+    "MEAN",
+    "Stack"
+  ],
+  "author": "Aniket Mandalik, Nikhil Agarwal",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/aniketmandalik/InternMart/issues"
+  },
+  "homepage": "https://github.com/aniketmandalik/InternMart#readme",
+  "dependencies": {
+    "express": "^4.15.3",
+    "save": "^2.3.1"
+  }
+}
