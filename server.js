@@ -3,8 +3,9 @@ var app = express();
 var port = process.env.PORT || 8000;
 var morgan = require('morgan');
 var mongoose = require('mongoose');
+var bodyParser = require("body-parser");
+
 var User = require('./app/models/user');
-var bodyParser = require("body-parser")
 
 // app.get('/', function(req, res) {
 // 	res.send("Hello World!");
@@ -22,17 +23,29 @@ mongoose.connect('mongodb://localhost:27017/internmart', function(err) {
 	}
 });
 
-
 //http://localhost:8000/users
 app.post('/users', function(req, res) {
+
 	// res.send("Testing users route.");
-	var user = new User();
-	user.name = req.body.name;
-	user.email = req.body.email;
-	user.username = req.body.username;
-	user.password = req.body.password;
-	user.save();
-	res.send("Yeee User Created!");
+	var userDetails = new User();
+	var user = req.body;
+	userDetails.name = user.name;
+	userDetails.username = user.username;
+	userDetails.email = user.email;
+	userDetails.password = user.password;
+	if (user.username == null || user.email == null || user.password == null ||
+		 user.username == '' || user.username == '' || user.username == '') {
+		res.send("Double check that name, username, email, and password are provided");
+	}else {
+		userDetails.save(function(err) {
+			if (err) {
+				res.send(err);
+				// res.send("Username or email already exists!");
+			} else {
+				res.send("User Created!")
+			}
+		});
+	}
 });
 
 app.get('/home', function(req, res){
